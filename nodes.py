@@ -130,7 +130,10 @@ DIFFUSERS_SCHEDULER_DICT = OrderedDict([
 ])
 
 ROOT_PATH = os.path.join(comfy_paths.get_folder_paths("custom_nodes")[0], "ComfyUI-3D-Pack")
+ROOT_PATH = "/code/ComfyUI/custom_nodes/ComfyUI-3D-Pack"
 CKPT_ROOT_PATH = os.path.join(ROOT_PATH, "Checkpoints")
+if os.path.exists(comfy_paths.cache_dir):
+    CKPT_ROOT_PATH = os.path.join(comfy_paths.cache_dir, "3D_Pack")
 CKPT_DIFFUSERS_PATH = os.path.join(CKPT_ROOT_PATH, "Diffusers")
 CONFIG_ROOT_PATH = os.path.join(ROOT_PATH, "Configs")
 MODULE_ROOT_PATH = os.path.join(ROOT_PATH, "Gen_3D_Modules")
@@ -1961,7 +1964,7 @@ class Load_SF3D_Model:
     
     @classmethod
     def INPUT_TYPES(cls):
-        cls.checkpoints_dir_abs = os.path.join(CKPT_ROOT_PATH, cls.checkpoints_dir)
+        cls.checkpoints_dir_abs = os.path.join(comfy_paths.models_dir, cls.checkpoints_dir)
         all_models_names = get_list_filenames(cls.checkpoints_dir_abs, SUPPORTED_CHECKPOINTS_EXTENSIONS)
         if cls.default_ckpt_name not in all_models_names:
             all_models_names += [cls.default_ckpt_name]
