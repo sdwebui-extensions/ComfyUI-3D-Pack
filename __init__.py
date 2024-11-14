@@ -5,6 +5,7 @@ from pyhocon import ConfigFactory
 import logging
 
 ROOT_PATH = os.path.join(comfy_paths.get_folder_paths("custom_nodes")[0], "ComfyUI-3D-Pack")
+ROOT_PATH = "/code/ComfyUI/custom_nodes/ComfyUI-3D-Pack"
 MODULE_PATH = os.path.join(ROOT_PATH, "Gen_3D_Modules")
 MV_ALGO_PATH = os.path.join(ROOT_PATH, "MVs_Algorithms")
 
